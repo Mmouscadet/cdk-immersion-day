@@ -43,6 +43,19 @@ At this point you can now synthesize the CloudFormation template for this code.
 $ cdk synth
 ```
 
+For the first time in an account 
+
+```
+$ cdk bootstrap
+```
+
+To launch the website, then copy the folder ui in the S3 bucket
+
+```
+aws cloudformation describe-stacks --stack-name ImmersionDayStack --query "Stacks[0].Outputs[?OutputKey=='WebSiteBucket'].OutputValue" --output text
+aws s3 sync ui/build s3://$$($(bucketsite))
+```
+
 To add additional dependencies, for example other CDK libraries, just add
 them to your `setup.py` file and rerun the `pip install -r requirements.txt`
 command.

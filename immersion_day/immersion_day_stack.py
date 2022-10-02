@@ -13,7 +13,7 @@ class ImmersionDayStack(Stack):
         
          # first we dploy an s3 bucket with its cloudfront distribution and its logging facilities ()
         myCloudFrontToS3 = CloudFrontToS3(
-            self, 'Icare', insert_http_security_headers=False)
+            self, 'ImmersionDayCDK', insert_http_security_headers=False)
 
         myCloudFrontToS3.s3_bucket.apply_removal_policy(RemovalPolicy.DESTROY)
         myCloudFrontToS3.cloud_front_logging_bucket.apply_removal_policy(RemovalPolicy.DESTROY)
@@ -21,3 +21,4 @@ class ImmersionDayStack(Stack):
 
 
         CfnOutput(self, "CloudFrontDistribution", value=myCloudFrontToS3.cloud_front_web_distribution.distribution_domain_name)
+        CfnOutput(self, "WebSiteBucket", value=myCloudFrontToS3.s3_bucket.bucket_name)
