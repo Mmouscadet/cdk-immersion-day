@@ -49,6 +49,13 @@ For the first time in an account
 $ cdk bootstrap
 ```
 
+And then deploy
+
+```
+$ cdk deploy
+```
+
+
 To launch the website, then copy the folder ui in the S3 bucket
 
 ```
